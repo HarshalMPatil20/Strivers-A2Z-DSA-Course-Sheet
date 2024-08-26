@@ -33,6 +33,8 @@
 
 &nbsp;
 
+### Examples :
+ ## 1. Rectangular Pattern  
 ```
 * * * * *
 * * * * * 
@@ -40,6 +42,45 @@
 * * * * * 
 * * * * * 
 ``` 
+Approach :
+
+1. Outer Loop : `5` Rows
+2. Inner Loop : `5` Columns
+
+| Row Number     |  Column count  |
+|----------|----------|
+| 0 th     |    5   |
+| 1 st     |    5   |
+| 2 nd     |    5   |
+| 3 rd     |    5   |
+| 4 th     |    5   |
+
+####  Relation : Columns are  `Independent`.
+
+3. Print `*` inside Inner Loop.
+
+```java
+// This is the outer loop which will loop for the rows.
+    for (int i = 0; i < 5; i++)
+    {
+        // This is the inner loop which here, loops for the columns
+        // as we have to print a rectangular pattern.
+        for (int j = 0; j < 5; j++)
+        {
+            System.out.print("* ");
+        }
+
+         // As soon as 5 stars are printed, we move to the
+        // next row and give a line break otherwise all stars
+        // would get printed in single line.
+        System.out.println();
+    }
+
+```
+&nbsp;
+
+
+## 2. Lower Triangular Pattern.
 ```
 * 
 * *  
@@ -47,6 +88,41 @@
 * * * *  
 * * * * * 
 ``` 
+Approach :
+
+1. Outer Loop : `5` Rows
+2. Inner Loop : `5` Columns
+
+| Row Number| Column Numbers| Column count  |
+|----------|  --------   |----------|
+| 0 th     |   0         |    1   |
+| 1 st     |   0→1       |    2   |
+| 2 nd     |   0→2       |    3   |
+| 3 rd     |   0→3       |    4   |
+| 4 th     |   0→4       |    5   |
+
+####  Relation : at `i`th Row, Column Numbers`0 → i` with `i+1` columns
+
+3. Print `*` inside Inner Loop.
+
+```java
+// This is the outer loop which will loop for the rows.
+    for (int i = 0; i < 5; i++) {
+      
+        // This is the inner loop which here, loops for the columns
+        for (int j = 0; j <= i; j++)  
+  // or for (int j=0; j < i+1; j++)
+        {
+            System.out.print("* ");
+        }
+        
+        System.out.println();
+    }
+
+```
+&nbsp;
+
+## 3. Incremental Numbers Pattern.
 ```
 1
 1 2
@@ -54,6 +130,38 @@
 1 2 3 4
 1 2 3 4 5
 ``` 
+Approach:
+1. Outer Loop : `5` Rows
+2. Inner Loop : `i` Columns
+
+| Row Number| Column Numbers| Column count  |
+|----------|  --------   |----------|
+| 0 th     |   0         |    1   |
+| 1 st     |   0→1       |    2   |
+| 2 nd     |   0→2       |    3   |
+| 3 rd     |   0→3       |    4   |
+| 4 th     |   0→4       |    5   |
+
+####  Relation : at `i`th Row, Numbers`1 → i+1` with `i+1` columns
+3. Print `j` for `i+1` times inside Inner Loop.
+
+```java
+// This is the outer loop which will loop for the rows.
+  for (int i = 0; i < 5; i++) {
+
+    // This is the inner loop which here, loops for the columns
+    for (int j = 1; j <= i+1; j++) {
+
+      System.out.print(j + " ");
+    }
+
+    System.out.println();
+  }
+```
+
+&nbsp;
+
+## 4. Inverted Right Triangle Pattern.
 ```
 1
 2 2
@@ -61,6 +169,39 @@
 4 4 4 4
 5 5 5 5 5
 ``` 
+Approach:
+1. Outer Loop : `5` Rows
+2. Inner Loop : `i` Columns
+
+| Row Number| Column Numbers| Column count  |
+|----------|  --------   |----------|
+| 0 th     |   0         |    1   |
+| 1 st     |   0→1       |    2   |
+| 2 nd     |   0→2       |    3   |
+| 3 rd     |   0→3       |    4   |
+| 4 th     |   0→4       |    5   |
+
+####  Relation : at `i`th Row, Number`i+1`, `i+1` times 
+
+3. Print `i+1` times `i+1` inside Inner Loop.
+
+```java
+// This is the outer loop which will loop for the rows.
+  for (int i = 0; i < 5; i++) {
+
+    // This is the inner loop which here, loops for the columns
+    for (int j = 1; j <= i+1; j++) {
+
+      System.out.print(i+1 + " ");
+    }
+    
+    System.out.println();
+  }
+```
+&nbsp;
+
+
+## 5. Inverted Right Triangle Pattern with Asterisks.
 ```
 * * * * *
 * * * * 
@@ -68,13 +209,86 @@
 * *  
 * 
 ``` 
+Approach:
+
+1. Outer Loop : `5` Rows
+2. Inner Loop : `5-i` Columns
+
+| Row Number| Column Numbers| Column count  |
+|----------|  --------   |----------|
+| 0 th     |   0→ 4       |    5   |
+| 1 st     |   0→ 3       |    4   |
+| 2 nd     |   0→ 2       |    3   |
+| 3 rd     |   0→ 1       |    2   |
+| 4 th     |    0        |    1   |
+
+####  Relation : at `i`th Row, Column `0 → 5-i` with `5-i` columns
+
+3. Print `i+1` Asterisks inside Inner Loop.
+```java
+// This is the outer loop which will loop for the rows.
+  for (int i = 0; i < 5; i++) {
+
+    // This is the inner loop which here, loops for the columns
+    for (int j = 0; j < 5-i; j++) {
+
+      System.out.print("* ");
+    }
+
+    System.out.println();
+  }
+```
+
+&nbsp;
+
+## 6. Inverted Right Triangle Pattern with Numbers.
 ```
 1 2 3 4 5
 1 2 3 4
 1 2 3
 1 2
 1
-``` 
+```
+Approach:
+
+1. Outer Loop : `5` Rows
+2. Inner Loop : `5-i` Columns
+
+| Row Number| Column Numbers| Column count  |
+|----------|  --------   |----------|
+| 0 th     |   0→ 4       |    5   |
+| 1 st     |   0→ 3       |    4   |
+| 2 nd     |   0→ 2       |    3   |
+| 3 rd     |   0→ 1       |    2   |
+| 4 th     |    0        |    1   |
+
+####  Relation : at `i`th Row, Column `0 → 5-i` with `N-i` columns
+
+``` java
+// This is the outer loop which will loop for the rows.
+  for (int i = 0; i < 5; i++) {
+
+    // This is the inner loop which here, loops for the columns
+    for (int j = 0; j < 5-i; j++) {
+      System.out.print((j+1) + " ");
+    }
+
+    System.out.println();
+  }
+```
+&nbsp;
+-----
+&nbsp;
+
+## 7. Full Triangle with Asterisks.
+
+- In Patterns like these, `Space` is also important to iterate and print.
+- Printing Approach should be :
+
+    | Space | Asterisks | Space |
+    |-------|-----------|--------|
+
+
 ```
         * 
       * * *  
@@ -82,6 +296,21 @@
   * * * * * * *
 * * * * * * * * * 
 ``` 
+Approach:
+
+| Row No.| Space     | Asterisks | Space    |
+|--------|-------    |-----------|--------  |
+| 0      | 4         |1          |4         |
+| 1      | 3         |3          |3         |
+| 2      | 2         |5          |2         |
+| 3      | 1         |7          |1         |
+| 4      | 0         |9          |0         |
+| i      | n - (i+1) |2 (i+1)    |n - (i+1) |
+
+
+
+
+
 ```
 * * * * * * * * *
   * * * * * * *
