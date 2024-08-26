@@ -21,11 +21,17 @@
 
 &nbsp;
 
-# Lec 2: Build-up Logical Thinking : `Patterns`
+## Lec 2: Build-up Logical Thinking : `Patterns`
  
 ## 4 Rules for solving Patterns : 
-- Patterns 
+### Patterns  → `Nested Loops`
 
+1. For __`Outer Loop`__ → Count the `Number of Rows`
+2. For __`Inner Loop`__ → Count the `Number of Columns` & Somehow connect them to rows.
+3. Print them inside __Inner Loop__
+4. Observe Symmetry [_optional_]
+
+&nbsp;
 
 ```
 * * * * *
