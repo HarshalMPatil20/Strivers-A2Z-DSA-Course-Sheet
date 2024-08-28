@@ -297,7 +297,10 @@ Approach:
 * * * * * * * * * 
 ``` 
 Approach:
+1. Outer Loop : `n` Rows
 
+
+Here `n = 5`
 | Row No.| Space     | Asterisks | Space    |
 |--------|-------    |-----------|--------  |
 | 0      | 4         |1          |4         |
@@ -305,11 +308,39 @@ Approach:
 | 2      | 2         |5          |2         |
 | 3      | 1         |7          |1         |
 | 4      | 0         |9          |0         |
-| i      | n - (i+1) |2 (i+1)    |n - (i+1) |
+| `i `    | `n - (i+1)` |`2i+1`    |`n - (i+1)` |
 
+2. Inner Loops :
+    - First Inner Loop : `n-(i+1)` Spaces
+    - Second Inner Loop : `2i+1` Asterisks
+    - Third Inner Loop : `n-(i+1)` Spaces
 
+``` java
+// Outer Loop
+  for(i=0; i < n; i++){
+    
+    // First Inner Loop : n-(i+1) Spaces
+    for(j=0; j < n - (i+1); j++){   
+      System.out.print("  ");
+      }
 
+    // Second Inner Loop : 2i+1 Asterisks
+    for(k=0; k < 2*i+1; k++){       
+      System.out.print("* ");
+      }
 
+    // Third Inner Loop : n-(i+1) Spaces
+    for(l=0; l < n - (i+1); l++){   
+      System.out.print("  ");
+      }
+  
+    System.out.println();
+  }
+```
+
+&nbsp;
+
+## 8. Inverted Full Triangle with Asterisks.
 
 ```
 * * * * * * * * *
@@ -318,6 +349,51 @@ Approach:
       * * *
         * 
 ```
+Approach:
+1. Outer Loop : `n` Rows
+
+
+Here `n = 5`
+| Row No.| Space     | Asterisks | Space    |
+|--------|-------    |-----------|--------  |
+| 0      | 0         |9          |0         |
+| 1      | 1         |7          |1         |
+| 2      | 2         |5          |2         |
+| 3      | 3         |3          |3         |
+| 4      | 4         |1          |4         |
+| `i `   | `i`       |`2(n-(i+1)) + 1`    |`i` |
+
+2. Inner Loops :
+    - First Inner Loop : `i` Spaces
+    - Second Inner Loop : `2(n-(i+1)) + 1` Asterisks
+    - Third Inner Loop : `i` Spaces
+
+``` java
+// Outer Loop
+  for(i=0; i < n; i++){
+    
+    // First Inner Loop : n-(i+1) Spaces
+    for(j=0; j < i; j++){   
+      System.out.print("  ");
+      }
+
+    // Second Inner Loop : 2i+1 Asterisks
+    for(k=0; k < 2(n-(i+1)) + 1; k++){       
+      System.out.print("* ");
+      }
+
+    // Third Inner Loop : n-(i+1) Spaces
+    for(l=0; l < i; l++){   
+      System.out.print("  ");
+      }
+  
+    System.out.println();
+  }
+```
+
+&nbsp;
+
+## 9. Diamond with Asterisks.
 ```
         * 
       * * *  
@@ -330,17 +406,68 @@ Approach:
       * * *
         *
 ```
+#### Combine Two Patterns = Pattern 7 + Pattern 8
+
+&nbsp;
+
+## 10. Half Kite with Asterisks.
 ```
 * 
 * *  
 * * *  
 * * * *  
-* * * * *
+* * * * *  
 * * * * 
 * * *  
 * *  
 *  
 ```
+Approach:
+1. Outer Loop : `2n-1` Rows
+
+
+Here `n = 5`
+| Row No.| Asterisks |
+|--------|-----------|
+| 0      |1          |
+| 1      |2          |
+| 2      |3          |
+| 3      |4          |
+| 4      |5          |
+| 5      |4          |
+| 6      |3          |
+| 7      |2          |
+| 8      |1          |
+
+
+
+2. Inner Loops :
+    - if  `i > n`  : `stars = 2n - i`    
+      else : `stars = i`
+    - Inner Loop : `stars` Asterisks
+
+```java
+// Outer Loop  
+  for (int i = 1; i <= 2 * n - 1; i++){
+
+      // to Reverse the process after symmetry
+      int stars = i;
+      if (i > n) { stars = 2*n - i; }
+      
+      // Inner Loop2
+      for (int j = 0; j < stars; j++) {
+          System.out.print("* ");
+        }
+      
+      System.out.println();
+    }    
+```
+&nbsp;
+-----
+&nbsp;
+
+
+## 11. Alternate Binary Pattern
 ```
 1
 0 1
@@ -348,12 +475,106 @@ Approach:
 0 1 0 1
 1 0 1 0 1
 ```
+Approach :
+1. Outer Loop : `n` Rows
+
+    - Each row have alternate starting 
+    - Decides Starting element of each row.
+
+      | Row No.| `Start` Number    |
+      |--------|-----------|
+      | Even   |1          |
+      | Odd    |0          |
+
+2. Inner Loops :
+
+    - Inner Loop is Printing in Alternate Pattern.
+    - `Next Element = 1 - Previous element.`
+    - Prints Alternate `0 1 0 1 0.....` 
+
+``` java
+  // Outer loop for the no. of rows
+    for(int i = 0; i < n ; i++){
+          
+          int start;
+
+          // if the row index is even then 1 
+          if( i % 2 ==0) start = 1;
+          
+          // if odd, then starting from 0
+          else start = 0;
+          
+          // We alternatively print 1's and 0's in each row by using
+          // the inner for loop.
+
+          for(int j = 0; j <= i; j++){
+
+              System.out.print(start);
+
+              start = 1-start; // Alternate changer
+          }
+
+        System.out.println();
+    }
+```
+&nbsp;
+---
+&nbsp;
+
+## 12. Mirror Image Triangle
+
 ```
 1             1
 1 2         2 1
 1 2 3     3 2 1
 1 2 3 4 4 3 2 1
 ```
+Approach :
+
+  | Number | Space | Number (Mirror Sequence) |
+  |-------|-----------|--------|
+
+  1. Outer Loop : `n` Rows
+
+  Here `n = 4`
+| Row No.| Number     | Space                         | Number (Mirror Sequence)    |
+|--------|-------     |-----------                    |--------  |
+| 0      | 1          | `2(n-1)` = 6  &nbsp;  `-2`     |1         |
+| 1      | 1 2        | 4  &nbsp;  `-2`                |2 1       |
+| 2      | 1 2 3      | 2  &nbsp; `-2`                 |3 2 1     |
+| 3      | 1 2 3 4    | 0    &nbsp;                    |4 3 2 1   |
+
+2. Inner Loops :
+    - First Inner Loop : `1 → i+1` Numbers
+    - Second Inner Loop : `2(n-1-i)` Spaces
+    - Third Inner Loop : `i+1 → 1` Numbers
+
+```java
+    for(int i = 0; i < n ; i++){
+
+          // First Inner Loop : `1 → i+1` Numbers
+            for(int j = 0 ; j <= i ; j++){
+                System.out.print(j+1 + " ");
+            }
+
+          // Second Inner Loop : `2(n-1-i)` Spaces
+            for(int k = 0 ; k < 2*(n-1-i) ; k++){
+                System.out.print("  ");
+            }
+
+          // Third Inner Loop : `i+1 → 1` Numbers
+            for(int j = i ; j >= 0 ; j--){
+                System.out.print(j+1 + " ");
+            }
+
+          System.out.println();
+      }
+```
+&nbsp;
+---
+&nbsp;
+
+## 13. Preceding Triangular Sequence
 ```
 1
 2 3
@@ -361,6 +582,35 @@ Approach:
 7 8 9 10
 11 12 13 14 15
 ```
+Approach :
+1. Outer Loop : `n` Rows
+2. Inner Loops : `i + 1` times `number++`
+
+``` java
+ // Global Variable independent of loop initialization
+  int number = 1;
+
+// Outer Loop : `n` Rows
+  for(int i = 0; i < n ; i++){
+
+// Inner Loops : `i + 1` times `number++`
+// `number++` is a post Increment
+// First Print then Increment
+
+    for(int j = 0 ; j <= i ; j++){
+    
+      System.out.print( number++ + " ");
+      }
+
+    System.out.println();
+  }
+```
+&nbsp;
+---
+&nbsp;
+
+## 14. Ascending number of Character Printing
+
 ```
 A
 A B
@@ -368,6 +618,26 @@ A B C
 A B C D
 A B C D E 
 ```
+Approach :
+1. Outer Loop : `n` Rows
+2. Inner Loop : `i+1` Columns
+3. `char` Variable to store the character to be printed
+4. `char` Variable is incremented by 1 in each iteration of the inner loop
+```java
+    for(int i=0;i<n;i++){
+
+            // Inner loop will loop for i times and
+            // print alphabets from A to A + i.
+        for(char ch = 'A'; ch <='A'+ i; ch++){
+
+                System.out.print(ch + " ");
+            }
+
+        System.out.println();
+      }
+```
+
+## 15. Descending number of Character Printing
 ```
 A B C D E
 A B C D
@@ -375,6 +645,23 @@ A B C
 A B
 A
 ```
+Approach :
+1. Outer Loop : `n` Rows
+2. Inner Loop : `n-i` Columns
+3. `char` Variable to store the character to be printed
+4. `char` Variable is incremented by 1 in each iteration of the inner loop
+```java
+    for(int i=1;i<=n;i++){
+
+        for(char ch = 'A'; ch <='A'+ (n-i); ch++){
+
+                System.out.print(ch + " ");
+            }
+
+        System.out.println();
+      }
+```
+## 16.Row times Character Printing
 ```
 A 
 B B
@@ -382,12 +669,77 @@ C C C
 D D D D
 E E E E E
 ```
+
+Approach :
+
+1. Outer Loop : `n` Rows
+2. Inner Loop : `i` Columns
+```java
+  char ch = 'A';
+        
+    for(int i=1;i<=n;i++){
+
+        for(int j=1; j <= i; j++){
+
+                System.out.print(ch + " ");
+            }
+
+        ch++;
+         System.out.println();
+      }
+```
+&nbsp;
+---
+&nbsp;
+
+## 17. Character Printing with mirror sequence
+
+  | Space |Sequence characters|Reverse Sequence characters | 
+  |-------|-----------|--------|
+  |n-1 |A B C D|C B A|
 ```
       A
     A B A
   A B C B A
 A B C D C B A
 ```
+Approach :
+1. Outer Loop : `n` Rows
+2. Inner Loop : 
+    - First Inner Loop : `n-1` Spaces
+    - Second Inner Loop : `A → A+i` characters
+    - Third Inner Loop : `A+i-1 → A` characters
+
+``` java
+  char ch= 'A';
+  int spaces = n-1;
+
+      for(int i=0;i<n;i++){
+
+          // First Inner Loop : `n-1` Spaces
+            for(int j=0;j<spaces;j++){
+                System.out.print("  ");
+            }
+            
+          // Second Inner Loop : `A → A+i` characters
+            for(ch = 'A'; ch<='A'+i; ch++){
+                System.out.print(ch + " ");
+            }
+            
+            // here ch is ch++ so to become ch-1 we minus -2 from ch.
+            ch-=2;
+
+            // Third Inner Loop : `A+i-1 → A` characters
+            while(ch>='A'){
+                System.out.print(ch+ " ");
+                ch--;
+            }
+
+          spaces -=1;
+          System.out.println();
+      }
+```
+## 18. Ascending reverse ordering.
 ```
 E
 D E
@@ -395,6 +747,29 @@ C D E
 B C D E
 A B C D E
 ```
+Approach :
+1. Outer Loop : `n` Rows
+2. Inner Loop : `i` columns
+```java
+  char ch= 'A';
+
+      for(int i=1;i<=n;i++){
+            
+          for(ch = (char) ('A'+ n-i); ch<'A'+ n; ch++){
+                System.out.print(ch + " ");
+            }
+
+            System.out.println();
+        }
+```
+&nbsp;
+---
+&nbsp;
+
+## 19. Hollow Diamond with Asterisks. 
+  | Asterisks |Space|Asterisks | 
+  |-------|-----------|--------|
+  |n-i |2i|n-i|
 ```
 * * * * * * * * * *
 * * * *     * * * *
@@ -407,6 +782,9 @@ A B C D E
 * * * *     * * * *
 * * * * * * * * * *
 ```
+Approach :
+1. Outer Loop : `2n` Rows
+2. Inner Loop : `2n` Columns
 ```
 *                 *
 * *             * *
