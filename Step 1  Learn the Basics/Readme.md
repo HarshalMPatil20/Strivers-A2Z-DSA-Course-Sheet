@@ -753,9 +753,9 @@ Approach :
 ```java
   char ch= 'A';
 
-      for(int i=1;i<=n;i++){
+      for (int i=1;i<=n;i++){
             
-          for(ch = (char) ('A'+ n-i); ch<'A'+ n; ch++){
+          for (ch = (char) ('A'+ n-i); ch <'A'+ n; ch++){
                 System.out.print(ch + " ");
             }
 
@@ -769,7 +769,7 @@ Approach :
 ## 19. Hollow Diamond with Asterisks. 
   | Asterisks |Space|Asterisks | 
   |-------|-----------|--------|
-  |n-i |2i|n-i|
+  |`n-i` |`2i`|`n-i`|
 ```
 * * * * * * * * * *
 * * * *     * * * *
@@ -785,6 +785,7 @@ Approach :
 Approach :
 1. Outer Loop : `2n` Rows
 2. Inner Loop : `2n` Columns
+
 ```
 *                 *
 * *             * *
