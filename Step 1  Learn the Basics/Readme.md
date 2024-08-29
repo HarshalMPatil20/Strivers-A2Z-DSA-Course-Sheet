@@ -928,10 +928,9 @@ System.out.println(CountDigits(56789));
 - Extract Digits
 - Store in New Variable : `Number = Number*10 + Digit`
 - Repeat until all digits are extracted.
-
-  > [!NOTE]  
-  > If a number has trailing zeros, then its reverse will not include them. \
-  > For e.g., reverse of `10400` will be `401` instead of 00401.
+> [!NOTE]  
+> If a number has trailing zeros, then its reverse will not include them. \
+> For e.g., reverse of `10400` will be `401` instead of 00401.
 
 
 
