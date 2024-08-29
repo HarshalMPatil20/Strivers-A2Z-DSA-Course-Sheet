@@ -1146,7 +1146,7 @@ true
   1 36 2 18 3 12 4 9 6
   ```
 
-  > [!NOTE]  
-  > Calling `Math.sqrt()` also takes time so for further optimization. 
-  > - Form : &nbsp;for ( int i = 1; `i <= Math.sqrt(number);` i++ )
-  > - To : &nbsp; &nbsp;&nbsp; for ( int i = 1; `i*i <= number;` i++ )
+> [!NOTE]  
+> Calling `Math.sqrt()` also takes time so for further optimization. 
+> - Form : &nbsp;for ( int i = 1; `i <= Math.sqrt(number);` i++ )
+> - To : &nbsp; &nbsp;&nbsp; for ( int i = 1; `i*i <= number;` i++ )
