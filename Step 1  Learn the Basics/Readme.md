@@ -786,6 +786,9 @@ Approach :
 1. Outer Loop : `2n` Rows
 2. Inner Loop : `2n` Columns
 
+```java
+
+```
 ```
 *                 *
 * *             * *
@@ -812,4 +815,125 @@ Approach :
 4 3 3 3 3 3 4
 4 4 4 4 4 4 4
 ```
+&nbsp;
+----
+
+&nbsp;
+## Lec 4: Know Basic Maths
+
+
+### 1.  Extracting Digits from Number :
+
+- Extraction happens from unit place.
+- `% 10` = `Extracts digit of unit place`.
+- `/ 10` = `Removes digit of unit place` and Brings digit next to it on units place to extract further.
+
+#### Example :
+
+  _Extracting All digits from `56789` number._
+  - 56789 `% 10` = `9` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Extracts digit of unit place)
+
+    56789 `/ 10` = 5678  &nbsp;(Removes `9` digit of unit)
+
+  - 5678 `% 10` = `8` &nbsp;&nbsp; &nbsp;&nbsp;&nbsp; (Extracts digit of unit place)
+      
+      5678 `/ 10` = 567 &nbsp;&nbsp;&nbsp;&nbsp; (Removes `8` digit of unit place)
+
+  - 567 `% 10` = `7` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (Extracts digit of unit place)
+      
+      567 `/ 10` = 56 &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; (Removes `7` digit of unit place)
+
+  - 56 `% 10` = `6` &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; (Extracts digit of unit place)
+      
+      56 `/ 10` = 5 &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;  (Removes `6` digit of unit place)
+       
+  - 5 `% 10` = `5` &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; (Extracts digit of unit place)
+
+#### Code :
+
+```java
+// Function to Extract digits
+public static void extractDigits(int number) {
+
+  // until Number becomes less than 1 and 'int' value become 0.
+    while (number > 0) {
+
+       // Extracts digit of unit place
+        int digit = number % 10;
+
+        System.out.println(digit);
+
+        // Removes digit from unit place 
+        number /= 10;
+    }
+}
+
+extractDigits(56789);
+```
+#### Output :
+```
+9
+8
+7
+6
+5
+```
+
+----
+&nbsp;
+### 2.  Count Digits
+
+- Same As Extracting the digits but without storing just count the iterations.
+
+#### Example :
+
+  _Count All digits from `56789` number._
+
+   
+
+#### Code :
+```java
+// Function to Extract digits
+public static int CountDigits(int number) {
+
+  int counter = 0;
+
+  // until Number becomes less than 1 and 'int' value become 0.
+    while (number > 0) {
+
+       // Extracts digit of unit place
+        int digit = number % 10;
+
+      // count iterations
+        counter++;
+
+        // Removes digit from unit place 
+        number /= 10;
+    }
+
+    return counter;
+}
+
+System.out.println(CountDigits(56789));
+```
+#### Output :
+```
+5
+```
+
+----
+&nbsp;
+### 3.  Reverse Number
+
+- Extract Digits
+- Store in New Variable : `Number = Number*10 + Digit`
+- Repeat until all digits are extracted.
+
+  > [!NOTE]  
+  > If a number has trailing zeros, then its reverse will not include them. \
+  > For e.g., reverse of `10400` will be `401` instead of 00401.
+
+
+
+
 
