@@ -881,7 +881,7 @@ extractDigits(56789);
 
 ----
 &nbsp;
-### 2.  Count Digits
+### 2.  Count Digits :
 
 - Same As Extracting the digits but without storing just count the iterations.
 
@@ -923,16 +923,230 @@ System.out.println(CountDigits(56789));
 
 ----
 &nbsp;
-### 3.  Reverse Number
+### 3.  Reverse Number :
 
 - Extract Digits
 - Store in New Variable : `Number = Number*10 + Digit`
 - Repeat until all digits are extracted.
 > [!NOTE]  
-> If a number has trailing zeros, then its reverse will not include them. \
+> If a number has `trailing zeros`, then its reverse will `not include` them. \
 > For e.g., reverse of `10400` will be `401` instead of 00401.
 
+#### Code :
+```java
+public static int ReverseNumber(int number) {
+
+        // Variable to store reversed number
+        int reversed = 0;
+        
+        while (number > 0) {
+
+            // Extracts digit of unit place
+            int digit = number % 10;
+
+            reversed = reversed * 10 + digit;
+
+            // Removes digit from unit place
+            number /= 10;
+        }
+        
+        return reversed;
+    }
+  
+System.out.println(ReverseNumber(10400));
+```
+#### Output :
+```
+401
+```
+----
+&nbsp;
+
+### 4.  Check Palindrome Number :
 
 
+- A palindrome number is a number which remains the same when its digits are reversed.\
+  For e.g., 121, 12321 are palindrome numbers.
+
+- #### `Number = Reversed Number`
+
+#### Code :
+
+```java
+public static int ReverseNumber(int number) {
+        int reversed = 0;
+        
+        while (number > 0) {
+            int digit = number % 10;
+            reversed = reversed * 10 + digit;
+            number /= 10;
+        }
+        return reversed;
+    }
+
+// Checking Palindrome Using Reversed Number
+public static boolean Check_Palindrome(int number){
+
+        // Storing Reversed of Number
+        int reversed_number = ReverseNumber(number);
+
+        // returning True or false 
+        return number == reversed_number;
+    }
+
+System.out.println(Check_Palindrome(56789));
+System.out.println(Check_Palindrome(12321));
+```
+
+#### Output :
+```
+False
+True
+```
+----
+&nbsp;
+
+### 4.  Check Armstrong Number :
+
+- #### What is `Armstrong Number` :
+
+  An Armstrong Number, also known as a `Narcissistic Number`,\
+   is a number that is equal to `the sum of its own digits each raised to the power of the number of digits`.
+
+- Example:
+
+  - **153** is an Armstrong Number :
+    - The number of digits is `3`.
+    - Calculation : 1<sup>`3`</sup> + 5<sup>`3`</sup> + 3<sup>`3`</sup> = 1 + 125 + 27 = `153`.
+    - Therefore, 153 is Armstrong Number.
+  
+  - **1634** is an Armstrong Number :
+    - The number of digits is `4`.
+    - Calculation : 1<sup>`4`</sup> + 6<sup>`4`</sup> + 3<sup>`4`</sup> + 4<sup>`4`</sup> = 1 + 1296 + 81 + 256 = `1634`
+    - Therefore, 1634 is Armstrong Number.
 
 
+- #### `Armstrong Number = the sum of its own digits each raised to the power of the number of digits`
+
+- Examples of Armstrong Numbers
+
+  - **3-digit Armstrong Number** : 153, 370, 371, 407
+  - **4-digit Armstrong Number** : 1634, 8208, 9474
+  - **5-digit Armstrong Number** : 54748, 92727, 93084
+  - **6-digit Armstrong Number** : 548834.
+
+#### Code :
+```java
+import java.lang.Math;
+
+public static boolean Check_ArmStrong(int number){
+
+        int actual = number;
+        int expected = 0;
+
+        // Calculate the number of digits in the given number
+        int count = String.valueOf(number).length();
+
+        while(number > 0){
+
+            int digit = number %10;
+
+            expected += Math.pow(digit, count);
+
+            number /=10;
+        }
+        return expected == actual;
+    }
+
+System.out.println(Check_ArmStrong(56789));
+System.out.println(Check_ArmStrong(371));
+System.out.println(Check_ArmStrong(1634));
+```
+#### Output :
+```
+false
+true
+true
+```
+----
+&nbsp;
+
+### 5.  Print all divisors :
+
+- `Divisors = a number which divides another number with remainder 0`
+     Example :\
+    Divisors of `36` are 1, 2, 3, 4, 6, 9, 12, 18, 36.
+
+  ### 5.1. Brute Force Approach :
+  - Check Every Number till the actual one.
+  #### Code : 
+  ```java
+  public static void print_Divisors(int number) {
+
+      for (int i = 1; i <= number; i++) {
+
+          if (number % i == 0) {
+            System.out.print(i + " ");
+          }  
+
+      }
+  }
+
+  print_Divisors(36);
+  ```
+  #### Output :
+  ```
+  1 2 3 4 6 9 12 18 36
+  ```
+
+
+  ### 5.2. Optimal Approach :
+  - Check Every Number from `1 to sqrt(Number)`.
+  - If Number is divisible by i then print `i` and `number/i` both.
+  - But if `i` is `sqrt(Number)` then print only one.
+
+  Example :\
+  Divisors of `36` are 1, 2, 3, 4, 6, 9, 12, 18, 36.
+    |       |36           |       |
+    |-------|-------      |-------|
+    |1      |&nbsp;*      |36     |
+    |2      |&nbsp;*      |18     |
+    |3      |&nbsp;*      |12     |
+    |4      |&nbsp;*      |9      |
+    |6      |&nbsp;*      |6      |
+    |9      |&nbsp;*      |4      |
+    |12     |&nbsp;*      | 3     |
+    |18     |&nbsp;*      | 2     |
+    |36     |&nbsp;*      | 1     |
+
+
+  #### Code :
+  ```java
+  public static void print_Divisors(int number) {
+
+    // for (int i = 1; i <= Math.sqrt(number); i++) 
+
+    for (int i = 1; i*i <= number; i++) {
+
+        if (number % i == 0) {
+
+            System.out.print(i + " ");
+
+            if (i != number / i) {
+              System.out.print(number / i + " ");
+            }
+          }
+      }
+  }
+
+  print_Divisors(36)
+  ```
+  > [!NOTE]  
+  > Calling `Math.sqrt()` also take time so we can modify loop. \
+  > Form : for ( int i = 1; `i <= Math.sqrt(number);` i++ )\
+  > To : for ( int i = 1; `i*i <= number;` i++ )
+
+  #### Output :
+  ```
+  1 36 2 18 3 12 4 9 6
+  ```
