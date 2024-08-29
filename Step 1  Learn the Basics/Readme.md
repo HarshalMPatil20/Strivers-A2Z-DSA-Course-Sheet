@@ -1143,10 +1143,10 @@ true
   ```
   &nbsp;
 
-  > [!NOTE]  
-  > Calling `Math.sqrt()` also takes time so for further optimization. 
-  > - Form : &nbsp;for ( int i = 1; `i <= Math.sqrt(number);` i++ )
-  > - To : &nbsp; &nbsp;&nbsp; for ( int i = 1; `i*i <= number;` i++ )
+> [!NOTE]  
+> Calling `Math.sqrt()` also takes time so for further optimization. 
+> - Form : &nbsp;for ( int i = 1; `i <= Math.sqrt(number);` i++ )
+> - To : &nbsp; &nbsp;&nbsp; for ( int i = 1; `i*i <= number;` i++ )
 
   #### Output :
   ```
