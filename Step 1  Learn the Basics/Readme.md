@@ -1781,7 +1781,7 @@ static int count = 0;
   ```
   #### Recursion tree :
   
-    ```javascript
+    ```java
     printNumbers(1, 3)
     |
     |---- printNumbers(2, 3)
@@ -1790,7 +1790,7 @@ static int count = 0;
     |     |     |
     |     |     |---- printNumbers(4, 3)
     |     |     |     |
-    |     |     |     |---- return
+    |     |     |     |---- if(i > N) return;
     |     |     |
     |     |     |---- print `3`
     |     |
