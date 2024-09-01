@@ -1790,7 +1790,7 @@ static int count = 0;
     |     |     |
     |     |     |---- printNumbers(4, 3)
     |     |     |     |
-    |     |     |     |---- return
+    |     |     |     | return
     |     |     |
     |     |     |---- print `3`
     |     |
