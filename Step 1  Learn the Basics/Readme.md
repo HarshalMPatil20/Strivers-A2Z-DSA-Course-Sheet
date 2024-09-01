@@ -1686,7 +1686,7 @@ static int count = 0;
 
   #### Recursion tree :
   
-    ```JAVA
+    ```java
     printNumbers(3, 3)
     |
     |---- printNumbers(2, 3)
@@ -1738,7 +1738,7 @@ static int count = 0;
   ```
   #### Recursion tree :
   
-    ```JAVA
+    ```java
     printNumbers(3, 1)
     |
     |---- print `3`
@@ -1781,7 +1781,7 @@ static int count = 0;
   ```
   #### Recursion tree :
   
-    ```JAVA
+    ```java
     printNumbers(1, 3)
     |
     |---- printNumbers(2, 3)
