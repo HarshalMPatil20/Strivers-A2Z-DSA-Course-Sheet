@@ -1781,7 +1781,7 @@ static int count = 0;
   ```
   #### Recursion tree :
   
-    ```python
+    ```swift
     printNumbers(1, 3)
     |
     |---- printNumbers(2, 3)
