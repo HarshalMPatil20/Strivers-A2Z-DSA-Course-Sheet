@@ -1641,7 +1641,7 @@ static int count = 0;
 
   #### Recursion tree :
   
-    ```SWIFT
+    ```java
     printNumbers(1, 3)
     |
     |---- print `1`
@@ -1653,7 +1653,7 @@ static int count = 0;
     |           |---- print `3`
     |           |---- printNumbers(4, 3)
     |                 |
-    |                 |---- return
+    |                 |---- {return}
 
     ```
   
@@ -1695,7 +1695,7 @@ static int count = 0;
     |     |     |
     |     |     |---- printNumbers(0, 3)
     |     |     |     |
-    |     |     |     |---- return
+    |     |     |     |---- {return}
     |     |     |     
     |     |     |     
     |     |     |
@@ -1750,7 +1750,7 @@ static int count = 0;
     |           |---- print `1`
     |           |---- printNumbers(0, 1)
     |                 |
-    |                 |---- return
+    |                 |---- {return}
 
     ```
 
@@ -1781,7 +1781,7 @@ static int count = 0;
   ```
   #### Recursion tree :
   
-    ```java
+    ```python
     printNumbers(1, 3)
     |
     |---- printNumbers(2, 3)
@@ -1790,7 +1790,7 @@ static int count = 0;
     |     |     |
     |     |     |---- printNumbers(4, 3)
     |     |     |     |
-    |     |     |     |---- {return;}
+    |     |     |     |---- {return}
     |     |     |
     |     |     |---- print `3`
     |     |
