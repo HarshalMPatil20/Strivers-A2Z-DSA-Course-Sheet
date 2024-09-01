@@ -1641,7 +1641,7 @@ static int count = 0;
 
   #### Recursion tree :
   
-    ```java
+    ```swift
     printNumbers(1, 3)
     |
     |---- print `1`
@@ -1686,7 +1686,7 @@ static int count = 0;
 
   #### Recursion tree :
   
-    ```java
+    ```swift
     printNumbers(3, 3)
     |
     |---- printNumbers(2, 3)
@@ -1738,7 +1738,7 @@ static int count = 0;
   ```
   #### Recursion tree :
   
-    ```java
+    ```swift
     printNumbers(3, 1)
     |
     |---- print `3`
