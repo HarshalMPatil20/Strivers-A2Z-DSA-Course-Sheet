@@ -2396,6 +2396,7 @@ static int count = 0;
   - The Fibonacci series can also be calculated using the golden ratio.
 
   **find the 𝑛 nth Fibonacci number using the Golden Ratio (φ)**
+  
   $$ F(n) = \frac{\phi^n -( 1-\phi)^n}{\sqrt{5}}  =\frac{\phi^n - \psi^n}{\sqrt{5}} $$
 
   $$ \phi = \frac{1 + \sqrt{5}}{2} \quad \text{and} \quad \psi = \frac{1 - \sqrt{5}}{2}$$
