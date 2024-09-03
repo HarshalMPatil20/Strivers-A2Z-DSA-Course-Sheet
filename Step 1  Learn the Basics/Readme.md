@@ -1808,6 +1808,679 @@ static int count = 0;
   ```
 
 
+&nbsp;
+
+### 4. Sum of first N Natural Numbers
+
+- The sum of the first `N` natural numbers is `1 + 2 + 3 + ... + N`.
+
+- There are `2` Recursive way of calculating the sum of first N Natural Numbers:
+  - Parameterized Way
+  - Functional Way
+  
+  ### 4.1 Parameterized Way ( Passing Parameters ) :
+
+  - In this approach, instead of using a global variable for calculating the sum, we pass the sum in the parameters of the function each time we add an integer to it during the function call.
+  - The sum gets incremented by an `i`<sup> th</sup> integer and i get decremented by 1 in each function call
+
+  #### Code : 
+
+  ```java
+  static int Sum (int i, int total) {
+
+        // Base Condition.
+        if(i<1) {
+            return total;
+        }
+
+        // Function call to increment sum by i till i decrements to 1.
+        return Sum(i-1, total+i);
+    }
+  
+  System.out.println(Sum(4, 0));
+  ```
+  #### Recursion Tree :
+    
+    ```swift
+    Sum(4, 0)
+    |
+    |---- Sum(3, 4)
+    |     |
+    |     |---- Sum(2, 7)
+    |     |     |
+    |     |     |---- Sum(1, 9)
+    |     |     |     |
+    |     |     |     |---- Sum(0, 10)
+    |     |     |     |     |
+    |     |     |     |     |---- {return 10}
+    |     |     |     |
+    |     |     |     |---- {return 10}
+    |     |     |
+    |     |     |---- {return 10}
+    |     |
+    |     |---- {return 10}
+    |
+    |---- {return 10}
+
+    ```
+  #### Output : 
+
+  ```
+  10
+  ```
+
+  ### 4.2 Functional Way  :
+
+  - The sum gets incremented by an `i`<sup> th</sup> integer and i get decremented by 1 in each function call.
+
+  #### Code : 
+
+  ```java
+  static int Sum (int n) {
+        
+            // Base Condition.
+            if (n == 0) return 0;
+            
+            // Recursive Call
+            return n + Sum(n-1);
+    }
+
+    System.out.println(Sum(4));
+    ```
+  #### Recursion Tree :
+    
+    ```swift
+    Sum(4)
+    |
+    |---- Sum(3)
+    |     |
+    |     |---- Sum(2)
+    |     |     |
+    |     |     |---- Sum(1)
+    |     |     |     |
+    |     |     |     |---- Sum(0)
+    |     |     |     |     |
+    |     |     |     |     |---- {return 0}
+    |     |     |     |
+    |     |     |     |---- {return 1}
+    |     |     |
+    |     |     |---- {return 3}
+    |     |
+    |     |---- {return 6}
+    |
+    |---- {return 10}
+
+    ```
+
+  #### Output :
+  
+    ```
+    10
+    ```
+&nbsp;
+
+### 5. Factorial of a Number
+
+- The factorial of a number is the product of all the integers from `1 to N`.
+
+- Same as Summation, just Replace `+` with `*` 
+-  Change base condition to `1` as `0` will make all product `0`
+
+    ### 5.1 Parameterized Way ( Passing Parameters ) :
+
+    #### Code : 
+
+    ```java
+    static int Factorial (int i, int total) {
+
+          // Base Condition.
+          if(i<1) {
+              return total;
+          }
+
+        // Function call to Multiply Total by i till i decrements to 1.
+          return Factorial(i-1, total*i);
+      }
+  
+    System.out.println(Factorial(4, 1));
+    ```
+    #### Output : 
+
+    ```
+    24
+    ```
+    ### 5.2 Functional Way  :
+
+    #### Code : 
+
+    ```java
+    static int Factorial (int n) {
+        
+            // Base Condition.
+            if (n == 0) return 1;
+            
+            // Recursive Call
+            return n * Factorial(n-1);
+    }
+
+    System.out.println(Factorial(4));
+    ```
+    #### Output : 
+
+    ```
+    24
+    ```
+&nbsp;
+
+
+### 6. Reverse an Array using Recursion
+
+- `Reversed Array of [1,2,3,4,5]` will reverse the array to `[5,4,3,2,1]`.
+
+- There are `4` way of Reversing an Array:
+  - Using an extra array.
+  - Iterative Swapping
+  - Recursive Swapping 
+  - Using library functions.
+
+  ### 6.1 Using Extra Space :
+  - Create a new array and copy elements from the end of the original array to the start of the new array.
+
+  #### Code : 
+
+  ```java
+  static void reverseArray(int arr[]) {
+
+      int[] ans = new int[arr.length];
+
+      for (int i = arr.length - 1; i >= 0; i--) {
+        
+         ans[arr.length - i - 1] = arr[i];
+      }
+   }
+   ```
+  ### 6.2 Iterative Swapping :
+  - Swap the first element with the last element, the second element with the second last element, and so on.
+  - Continue swapping until the two pointers meet in the middle.
+  - This approach is `in-place` and does not require any extra space.
+  - This approach is `iterative`.
+  - This approach is `O(1)` space complexity.
+  - This approach is `O(n)` time complexity.
+
+  #### Code : 
+
+  ```java
+  static void reverseArray(int arr[]) {
+
+      int start = 0;
+      int end = arr.length - 1;
+
+      while (start < end) {
+
+          int temp = arr[start];
+          arr[start] = arr[end];
+          arr[end] = temp;
+
+          start++;
+          end--;
+      }
+  }
+  ```
+  
+
+  ### 6.3 Recursive Swapping :
+  - Swap the first element with the last element, the second element with the second last element, and so on.
+  - Continue swapping until the two pointers meet in the middle.
+  - This approach is `in-place` and does not require any extra space.
+  - This approach is `recursive`.
+  - This approach is `O(1)` space complexity.
+  - This approach is `O(n)` time complexity.
+
+  #### Code : Using Two variables `start` & `end`
+
+  ```java
+  static void reverseArray(int arr[], int start, int end) {
+
+      // Base Condition.
+      if (start >= end) return;
+
+      // Swapping
+      int temp = arr[start];
+      arr[start] = arr[end];
+      arr[end] = temp;
+
+      // Recursive Call
+      reverseArray(arr, start + 1, end - 1);
+  }
+  ```
+
+  #### Recursion Tree :
+    
+    ```swift
+    reverseArray([1,2,3,4,5], 0, 4)
+    |
+    |---- reverseArray([5,2,3,4,1], 1, 3)
+    |     |
+    |     |---- reverseArray([5,4,3,2,1], 2, 2)
+    |     |     |
+    |     |     |---- {return}
+    |     |
+    |     |---- {return}
+    |
+    |---- {return}
+    ```
+  #### Code : Using Single Variable `i`
+  
+    ```java
+    static void reverseArray(int arr[], int i) {
+
+        // Base Condition.
+        if (i >= arr.length / 2) return;
+
+        // Swapping
+        int temp = arr[i];
+        arr[i] = arr[arr.length - i - 1];
+        arr[arr.length - i - 1] = temp;
+
+        // Recursive Call
+        reverseArray(arr, i + 1);
+    }
+    ```
+  #### Recursion Tree :
+    
+    ```swift
+    reverseArray([1,2,3,4,5], 0)
+    |
+    |---- reverseArray([5,2,3,4,1], 1)
+    |     |
+    |     |---- reverseArray([5,4,3,2,1], 2)
+    |     |     |
+    |     |     |---- {return}
+    |     |
+    |     |---- {return}
+    |
+    |---- {return}
+    ```
+  ### 6.4 Using Library Functions :
+  - Use the `Collections.reverse()` method to reverse the array.
+
+  #### Code : 
+
+  ```java
+  static void reverseArray(Integer arr[]) {
+      //fetching array as list object
+      //reversing the fetched object
+      Collections.reverse(Arrays.asList(arr));
+   }
+   ```
+
+&nbsp;
+
+### 7. String is palindrome or not
+- A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward.
+- example : `madam`, `racecar`, `12321`, `1221`, `12321`
+
+  ### 7.1 Using Two Pointers :
+
+  - Compare the first character with the last character, the second character with the second last character, and so on.
+  - Continue comparing until the two pointers meet in the middle.
+  - This approach is `iterative`.
+  - This approach is `O(1)` space complexity.
+  - This approach is `O(n)` time complexity.
+
+  #### Code : 
+
+  ```java
+  static boolean isPalindrome(String str) {
+
+      int start = 0;
+      int end = str.length() - 1;
+
+      while (start < end) {
+
+          if (str.charAt(start) != str.charAt(end)) {
+              return false;
+          }
+
+          start++;
+          end--;
+      }
+
+      return true;
+  }
+  ```
+
+  ### 7.2 Using Recursion :
+
+  - Compare the first character with the last character, the second character with the second last character, and so on.
+  - Continue comparing until the two pointers meet in the middle.
+  - This approach is `recursive`.
+  - This approach is `O(n)` space complexity.
+  - This approach is `O(n)` time complexity.
+
+  #### Code : using Two variables `start` & `end`
+
+  ```java
+  static boolean isPalindrome(String str, int start, int end) {
+
+      // Base Condition.
+      if (start >= end) return true;
+
+      // Recursive Call
+      if (str.charAt(start) != str.charAt(end)) {
+          return false;
+      }
+
+      return isPalindrome(str, start + 1, end - 1);
+  }
+  ```
+
+  #### Recursion Tree :
+    
+    ```swift
+    isPalindrome("madam", 0, 4)
+    |
+    |---- isPalindrome("madam", 1, 3)
+    |     |
+    |     |---- isPalindrome("madam", 2, 2)
+    |     |     |
+    |     |     |---- {return true}
+    |     |
+    |     |---- {return true}
+    |
+    |---- {return true}
+    ```
+  
+  #### Code : using Single variable `i`
+  
+    ```java
+    static boolean isPalindrome(String str, int i) {
+
+        // Base Condition.
+        if (i >= str.length() / 2) return true;
+
+        // Recursive Call
+        if (str.charAt(i) != str.charAt(str.length() - i - 1)) {
+            return false;
+        }
+
+        return isPalindrome(str, i + 1);
+    }
+    ```
+  #### Recursion Tree :
+    
+    ```swift
+    isPalindrome("madam", 0)
+    |
+    |---- isPalindrome("madam", 1)
+    |     |
+    |     |---- isPalindrome("madam", 2)
+    |     |     |
+    |     |     |---- {return true}
+    |     |
+    |     |---- {return true}
+    |
+    |---- {return true}
+    ```
+&nbsp;
+
+
+### 8. Fibonacci Series
+- The Fibonacci series is a series of numbers in which each number is the sum of the two preceding ones, usually starting with `0 and 1`.
+- The Fibonacci series is `0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...`.
+
+  ### 8.1 Using Loop :
+  - Initialize `n1` and `n2` as `0` and `1` respectively.
+  - Loop from `2` to `n` and calculate the sum of `n1` and `n2`.
+  - Update `n1` and `n2` with the new values.
+  - Return `n2`.
+  - This approach is `iterative`.
+  - This approach is `O(1)` space complexity.
+  - This approach is `O(n)` time complexity.
+
+  #### Code : 
+
+  ```java
+  static int fibonacci(int n) {
+
+      int n1 = 0;
+      int n2 = 1;
+
+      for (int i = 2; i <= n; i++) {
+
+          int sum = n1 + n2;
+          n1 = n2;
+          n2 = sum;
+      }
+
+      return n2;
+  }
+  ```
+  #### Output :
+  
+    ```
+    5
+    ```
+  ### 8.2 Using Recursion :
+
+  - The `nth` Fibonacci number is the sum of the `(n-1)`<sup>th</sup> and `(n-2)`<sup>th</sup> Fibonacci numbers.
+  - The `0`<sup>th</sup> and `1`<sup>st</sup> Fibonacci numbers are `0` and `1` respectively.
+  - This approach is `recursive`.
+  - This approach is `O(n)` space complexity.
+  - This approach is `O(2<sup>n</sup>)` time complexity.
+
+  #### Code : 
+
+  ```java
+  static int fibonacci(int n) {
+
+      // Base Condition.
+      if (n <= 1) return n;
+      
+      // Recursive Call
+      return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+  ```
+
+  #### Recursion Tree :
+    
+    ```swift
+    fibonacci(5)
+    |
+    |---- fibonacci(4)
+    |     |
+    |     |---- fibonacci(3)
+    |     |     |
+    |     |     |---- fibonacci(2)
+    |     |     |     |
+    |     |     |     |---- fibonacci(1)
+    |     |     |     |     |
+    |     |     |     |     |---- {return 1}
+    |     |     |     |
+    |     |     |     |---- fibonacci(0)
+    |     |     |     |     |
+    |     |     |     |     |---- {return 0}
+    |     |     |     |
+    |     |     |     |---- {return 1}
+    |     |     |
+    |     |     |---- fibonacci(1)
+    |     |     |     |
+    |     |     |     |---- {return 1}
+    |     |     |
+    |     |     |---- {return 2}
+    |     |
+    |     |---- fibonacci(2)
+    |     |     |
+    |     |     |---- fibonacci(1)
+    |     |     |     |
+    |     |     |     |---- {return 1}
+    |     |     |
+    |     |     |---- fibonacci(0)
+    |     |     |     |
+    |     |     |     |---- {return 0}
+    |     |     |
+    |     |     |---- {return 1}
+    |     |
+    |     |---- {return 3}
+    |
+    |---- {return 5}
+    ```
+
+  #### Output :
+  
+    ```
+    5
+    ```
+
+  ### 8.2 Using Memoization :
+  - Memoization is a technique used in programming to optimize the execution time of functions that have repetitive or recursive computations. It involves storing the results of expensive function calls and returning the cached result when the same inputs occur again.
+
+  - Store the Fibonacci numbers in an array.
+  - If the Fibonacci number is already calculated, return it from the array.
+  - This approach is `recursive`.
+  - This approach is `O(n)` space complexity.
+  - This approach is `O(n)` time complexity.
+
+  #### Code : 
+
+  ```java
+  static int fibonacci(int n, int[] memo) {
+
+      // Base Condition.
+      if (n <= 1) return n;
+
+      // If the Fibonacci number is already calculated, return it from the array.
+      if (memo[n] != 0) return memo[n];
+
+      // Recursive Call
+      memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+      return memo[n];
+  }
+  ```
+  #### Output :
+  
+    ```
+    5
+    ```
+
+    ### 8.3 Using Tabulation :
+  - Tabulation is a technique used in programming to optimize the execution time of functions that have repetitive or recursive computations. It involves storing the results of expensive function calls in a table and returning the cached result when the same inputs occur again.
+
+  - Store the Fibonacci numbers in an array.
+  - Loop from `2` to `n` and calculate the sum of the `(i-1)`<sup>th</sup> and `(i-2)`<sup>th</sup> Fibonacci numbers.
+  - Update the array with the new values.
+  - Return the `n`<sup>th</sup> Fibonacci number.
+  - This approach is `iterative`.
+  - This approach is `O(n)` space complexity.
+  - This approach is `O(n)` time complexity.
+
+  #### Code : 
+
+  ```java
+  static int fibonacci(int n) {
+
+      int[] dp = new int[n + 1];
+      dp[0] = 0;
+      dp[1] = 1;
+
+      for (int i = 2; i <= n; i++) {
+          dp[i] = dp[i - 1] + dp[i - 2];
+      }
+
+      return dp[n];
+  }
+  ```
+
+  ### 8.4 Using Golden Ratio :
+
+  - The Fibonacci series can also be calculated using the golden ratio.
+
+  **find the 𝑛 nth Fibonacci number using the Golden Ratio (φ)**
+  $$ F(n) = \frac{\phi^n -( 1-\phi)^n}{\sqrt{5}}  =\frac{\phi^n - \psi^n}{\sqrt{5}} $$
+
+  $$ \phi = \frac{1 + \sqrt{5}}{2} \quad \text{and} \quad \psi = \frac{1 - \sqrt{5}}{2}$$
+
+    `1-φ = ψ` is the other root of the characteristic equation.
+  - This approach is `iterative`.
+  - This approach is `O(1)` space complexity.
+  - This approach is `O(1)` time complexity.
+
+
+
+
+  #### Code : 
+
+  ```java
+  static int fibonacci(int n) {
+    double phi = (1 + Math.sqrt(5)) / 2;
+
+    double psi = (1 - Math.sqrt(5)) / 2; // This is the other root of the characteristic equation
+
+    return (int) Math.round((Math.pow(phi, n) - Math.pow(psi, n)) / Math.sqrt(5));
+  }
+  ```
+
+  #### Output :
+  
+    ```
+    5
+    ```
+
+  ### 8.6 Using Matrix Exponentiation :
+  - The Fibonacci series can also be calculated using matrix exponentiation.
+  - The `nth` Fibonacci number can be calculated using the matrix `[[1, 1], [1, 0]]` raised to the power of `(n-1)`.
+  - This approach is `iterative`.
+  - This approach is `O(1)` space complexity.
+  - This approach is `O(log n)` time complexity.
+
+  #### Code : 
+
+  ```java
+  static int fibonacci(int n) {
+
+      if (n == 0) return 0;
+
+      int[][] matrix = {{1, 1}, {1, 0}};
+      int[][] result = {{1, 0}, {0, 1}};
+
+      while (n > 0) {
+
+          if (n % 2 == 1) {
+              result = multiply(result, matrix);
+          }
+
+          n = n / 2;
+          matrix = multiply(matrix, matrix);
+      }
+
+      return result[1][0];
+  }
+  ```
+  #### Explanation :
+
+  - The `nth` Fibonacci number can be calculated using the matrix `[[1, 1], [1, 0]]` raised to the power of `(n-1)`.
+  - The matrix multiplication is defined as follows:
+    - `[[a, b], [c, d]] * [[e, f], [g, h]] = [[a*e + b*g, a*f + b*h], [c*e + d*g, c*f + d*h]]`
+  - The `result` matrix is initialized as the identity matrix `[[1, 0], [0, 1]]`.
+  - The `matrix` matrix is initialized as `[[1, 1], [1, 0]]`.
+  - The `result` matrix is multiplied by the `matrix` matrix if `n` is odd.
+  - The `matrix` matrix is squared if `n` is even.
+  - The `n` value is halved in each iteration.
+  - The `result[1][0]` value is returned as the `nth` Fibonacci number.
+  - The time complexity of this approach is `O(log n)`.
+  - The space complexity of this approach is `O(1)`.
+
+
+
+&nbsp;
+
+
+
+
+
+
+
+
   
 
 
