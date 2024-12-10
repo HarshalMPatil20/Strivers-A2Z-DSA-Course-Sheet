@@ -2396,7 +2396,7 @@ static int count = 0;
   - The Fibonacci series can also be calculated using the golden ratio.
 
   **find the 𝑛 nth Fibonacci number using the Golden Ratio (φ)**
-  
+
   $$ F(n) = \frac{\phi^n -( 1-\phi)^n}{\sqrt{5}}  =\frac{\phi^n - \psi^n}{\sqrt{5}} $$
 
   $$ \phi = \frac{1 + \sqrt{5}}{2} \quad \text{and} \quad \psi = \frac{1 - \sqrt{5}}{2}$$
@@ -2413,6 +2413,7 @@ static int count = 0;
 
   ```java
   static int fibonacci(int n) {
+
     double phi = (1 + Math.sqrt(5)) / 2;
 
     double psi = (1 - Math.sqrt(5)) / 2; // This is the other root of the characteristic equation
@@ -2472,10 +2473,290 @@ static int count = 0;
   - The space complexity of this approach is `O(1)`.
 
 
-
 &nbsp;
 
+> [!NOTE]  
+> The `Maximum Array Size`  can be initialized is \
+>  `int` arr [10<sup>`6`</sup>] ← Inside main function \
+> `Bool` arr [10<sup>`7`</sup>] ← Inside main function  \
+> &nbsp;\
+> `int` arr [10<sup>`7`</sup>] ← Global Array \
+> `Bool` arr [10<sup>`8`</sup>] ← Global Array 
 
+---
+&nbsp;
+
+## Lec 6 : Learn Basic Hashing
+- `Hashing` is used to index and retrieve items in a database because it is faster to find the item using the shorter hashed key than to find it using the original value.
+
+
+  ### Table of Hashing in Real Life :
+  | `Real Life` | `Key` | `Value` |
+  |-------|---|---|
+  | Phone Book | Name | Number |
+  | Dictionary | Word | Meaning |
+  | Library | Book | Author |
+  | Database | Username | Password |
+  | Bank | Account Number | Balance |
+  | Hospital | Patient ID | Details |
+  | School | Roll Number | Marks |
+  | College | Student ID | Attendance |
+  | Company | Employee ID | Salary |
+  | Government | Aadhar Number | Details |
+  | Police | FIR Number | Details |
+  | Court | Case Number | Details |
+
+  &nbsp;
+
+  ### Table of Hashing in Competitive Programming :
+  | `Competitive Programming` | `Key` | `Value` |
+  |-------|---|---|
+  | Count Occurrences | Element | Frequency |
+  | Unique Elements | Element | Boolean |
+  | Frequency | Element | Frequency |
+  | Maximum Element | Element | Maximum |
+  | Minimum Element | Element | Minimum |
+  | Sum of Elements | Element | Sum |
+  | Average of Elements | Element | Average |
+  | Median of Elements | Element | Median |
+  | Mode of Elements | Element | Mode |
+  | Range of Elements | Element | Range |
+  | Standard Deviation | Element | Standard Deviation |
+  | Variance | Element | Variance |
+  | Covariance | Element | Covariance |
+
+
+  ### 6.1 Importance of Hashing :
+  - `Array` : `1 2 3 4 5 6 7 8 9 10`
+  - `Count Occurrences` : `7`
+  
+    #### 1. Brute Force Approach :
+    - Traverse the array from the beginning to the end.
+    - Count the occurrences of `7`.
+
+      ``` java
+      int function (int arr[], int n) {
+          int count = 0;
+          for (int i = 0; i < n; i++) {
+              if (arr[i] == 7) {
+                  count++;
+              }
+          }
+          return count;
+      }
+      ```
+
+
+    - `Time` : `O(n)` as we need to traverse all elements to find `7`.\
+       → `Total Time` : `n * O(n)`  = __O(n<sup>2</sup>)__.
+
+
+    #### 2. Hashing Approach :
+    - `Hashing` : `7` will be hashed to `7` and we can directly find it in `O(1)` time.\
+     → `Total Time` : `n * O(1)`  = __O(n)__.
+
+      ``` java
+      int function (int arr[], int n) {
+          int hash[10] = {0};
+          for (int i = 0; i < n; i++) {
+              hash[arr[i]]++;
+          }
+          return hash[7];
+      }
+      ```
+
+  ### 6.2 Definition of Hashing :
+  - The combination of the steps, `Pre-storing` & `fetching`.
+  - `Pre-storing` : Store the `Key` in the `Index` of the `Array`.
+  - `Fetching` : Fetch the `Value` from the `Index` of the `Array`.
+
+  #### A. Number Hashing :
+  - `Key` : `Integer`
+  - `Value` : `Integer`
+
+  #### Example : `1 3 2 1 3` 
+    - we will create an array (named hash array) of size 13 (so that we can get the index 12) initialized with 0 
+  
+  1. `Pre-storing` :
+
+      ```java
+      int[] hash = new int[13];
+            for (int i = 0; i < n; i++) {
+                hash[arr[i]]++;
+            }
+      ```
+    | `Index` | `0` | `1` | `2` | `3` | `4` | `5` | `6` | `7` | `8` | `9` | `10` | `11` | `12` |
+    |-------|---|---|---|---|---|---|---|---|---|---|----|----|----|
+    | Value | 0 | 2 | 1 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |  0 |  0 |  0 |
+
+  2. `Fetching` :
+
+       ```java
+       System.out.println(hash[3]);
+       ```
+      - `Output` : `2`
+
+  #### B. Character Hashing :
+  - `Key` : `String`
+  - `Value` : `Integer`
+
+  #### Example : `abcdabefc`
+    - we will create an array (named hash array) of size 26 (so that we can get the index 25) initialized with 0
+
+  1. `Pre-storing` :
+
+      ```java
+      int[] hash = new int[26];
+            for (int i = 0; i < n; i++) {
+                hash[arr[i] - 'a']++;
+            }
+      ```
+    | `Index` | `0` | `1` | `2` | `3` | `4` | `5` | `6` | `7` | `8` | `9` | `10` | `11` | `12` | `13` | `14` | `15` | `16` | `17` | `18` | `19` | `20` | `21` | `22` | `23` | `24` | `25` |
+    |-------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+    | Character | a | b | c | d | e | f | g | h | i | j | k | l | m | n | o | p | q | r | s | t | u | v | w | x | y | z |
+    | Value | 2 | 2 | 1 | 1 | 1 | 0 | 0 | 1 | 0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |0 |
+
+  2. `Fetching` :
+
+       ```java
+       char ch = 'c';
+       System.out.println(hash[ch - 'a']);
+       ```
+      - `Output` : `1`
+
+  ### 6.3 Hashing in Java :
+  - `HashMap` : `Key-Value` pair.
+  - `HashSet` : `Unique` elements.
+  - `HashTable` : `Synchronized` version of `HashMap`.
+
+  #### A. HashMap :
+  - `HashMap` is a part of the `Java Collection Framework`.
+  - It provides the basic implementation of the `Map` interface of Java.
+  - It stores the data in the `Key-Value` pair.
+  - It is `not synchronized`.
+  - It allows `null` values and the `null` key.
+  - It maintains `no order`.
+  - It is `non-generic`.
+
+  #### Example :
+
+  ```java
+  HashMap<Integer, Integer> map = new HashMap<>();
+  map.put(1, 2);
+  map.put(2, 3);
+  map.put(3, 4);
+  map.put(4, 5);
+  map.put(5, 6);
+  System.out.println(map.get(3));
+  ```
+  - `Output` : `4`
+
+  #### B. HashSet :
+  - `HashSet` is a part of the `Java Collection Framework`.
+  - It stores the data in the `Key-Value` pair.
+  - It is `not synchronized`.
+  - It allows `null` values.
+  - It maintains `no order`.
+  - It is `non-generic`.
+
+  #### Example :
+
+  ```java
+  HashSet<Integer> set = new HashSet<>();
+  set.add(1);
+  set.add(2);
+  set.add(3);
+  set.add(4);
+  set.add(5);
+  System.out.println(set.contains(3));
+  ```
+  - `Output` : `true`
+
+  #### C. HashTable :
+  - `HashTable` is a part of the `Java Collection Framework`.
+  - It provides the basic implementation of the `Map` interface of Java.
+  - It stores the data in the `Key-Value` pair.
+  - It is `synchronized`.
+  - It does not allow `null` values and the `null` key.
+  - It maintains `no order`.
+  - It is `non-generic`.
+
+  #### Example :
+
+  ```java
+  Hashtable<Integer, Integer> table = new Hashtable<>();
+  table.put(1, 2);
+  table.put(2, 3);
+  table.put(3, 4);
+  table.put(4, 5);
+  table.put(5, 6);
+  System.out.println(table.get(3));
+  ```
+  - `Output` : `4`
+
+  ### 6.4 Hashing in C++ :
+  - `map` : `Key-Value` pair.
+  - `unordered_map` : `Key-Value` pair.
+  - `unordered_set` : `Unique` elements.
+
+  #### A. map : Stores in `Sorted Order`
+  - `map` is a part of the `C++ Standard Template Library (STL)`.
+  - It stores the data in the `Key-Value` pair.
+  - It is `not synchronized`.
+  - It allows `null` values.
+  - It maintains `order`.
+    #### Example :
+    ```cpp
+    map<int, int> map;
+    map[1] = 2;
+    map[2] = 3;
+    map[3] = 4;
+    map[4] = 5;
+    map[5] = 6;
+    cout << map[3] << endl;
+    ```
+    - `Output` : `4`
+
+  #### B. unordered_map : Stores in `Random Order`
+  - `unordered_map` is a part of the `C++ Standard Template Library (STL)`.
+  - It stores the data in the `Key-Value` pair.
+  - It is `not synchronized`.
+  - It allows `null` values.
+  - It maintains `no order`.
+    #### Example :
+    ```cpp
+    unordered_map<int, int> map;
+    map[1] = 2;
+    map[2] = 3;
+    map[3] = 4;
+    map[4] = 5;
+    map[5] = 6;
+    cout << map[3] << endl;
+    ```
+    - `Output` : `4`
+
+  #### C. unordered_set : Stores in `Random Order`
+  - `unordered_set` is a part of the `C++ Standard Template Library (STL)`.
+  - It stores the data in the `Key-Value` pair.
+  - It is `not synchronized`.
+  - It allows `null` values.
+  - It maintains `no order`.
+    #### Example :
+    ```cpp
+    unordered_set<int> set;
+    set.insert(1);
+    set.insert(2);
+    set.insert(3);
+    set.insert(3);
+    cout << set.count(3) << endl;
+    ```
+    - `Output` : `1`
+
+>[!NOTE] 
+> If we want to fetch the value of a `key that does not exist` in the map, \
+> The map will always return `0 in C++` and `null in Java`.
+
+  ### 6.5 Difference between array hashing and hashing using the map:
 
 
 
@@ -2487,9 +2768,12 @@ static int count = 0;
 
 
 
+    
+  
 
 
 
 
 
 
+  
